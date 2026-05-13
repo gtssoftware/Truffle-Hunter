@@ -1,1 +1,118 @@
-the dos application would run a file. the file is THE1.lump, lumps would be a special file, basically a renamed zip, containing all of the assets (ex : scipts, images, sounds), as a single file, and the exe would run the scripts from THE1.lump and there would be 4 episodes, so episode 1 is THE1.lump, but for now it will just be episode 1. the exe itself would be JUBBA.exe, but its not an installer.
+the dos application would run a file. the file is THE1.lump, lumps would be a special file, basically a renamed zip, containing all of the assets (ex : images, sounds), as a single file, and the exe would run the scripts from THE1.lump and there would be 4 episodes, so episode 1 is THE1.lump, but for now it will just be episode 1. the exe itself would be JUBBA.exe, but its not an installer.  the lump would also contain maps, each episode having 5 maps, maps use .pmap. the first line of a pmap would be the map name, and the line for this would be "map.name '(map name)';", then you could add polygon hitboxes to the map, with the origin being the bottom left corner of the map, so if i wanted a square, i would do this
+
+map.name 'mapexample';
+{map.hitbox
+0, 1;
+0, 4;
+4, 1;
+4, 4;
+}
+
+
+that script shows how you would make a square, and you can set player spawn like this 
+
+
+map.name 'mapexample';
+{map.hitbox
+0, 1;
+0, 4;
+4, 1;
+4, 4;
+}
+
+{map.player
+6, 2
+}
+
+
+
+any hitboxes within the map would use a tiled texture, that can be loaded within the pmap like this :
+
+
+
+map.name 'mapexample';
+map.img 'img/map/map.png'
+{map.hitbox
+0, 1;
+0, 4;
+4, 1;
+4, 4;
+}
+{map.player
+6, 2
+}
+
+
+
+
+the texture will be tiled so it fills the hitboxes.
+
+you can also add monsters at certain points like this, for example we will use the Terracottal (textures at img/terra), 
+
+
+map.name 'mapexample';
+map.img 'img/map/map.png'
+{map.hitbox
+0, 1;
+0, 4;
+4, 1;
+4, 4;
+}
+{map.player
+6, 2
+}
+{map.enemyspawn 'terra.spt'
+8, 5
+}
+
+
+
+monsters, such as the terracottal, would act as presets that spawn, using SPT files, so this is what terracottals spt would look like :
+
+
+
+mob.name 'Terracottal'
+mob.id 'terra'
+mob.hp '50'
+mob.flip (0) \\mob.flip determines whether enemy sprites get flipped when facing opposite diirection (1 = flip, 0 = separate sprites)
+{if 'mob.flip' = '0' 
+mob.idle.l 'IMG\TERRA\TLEFT.png' id 'idlel'
+mob.idle.r 'IMG\TERRA\TRIGHT.png' id 'idler'
+mob.atk.l 'IMG\TERRA\TLATK.png' id 'latk'
+mob.atk.r 'IMG\TERRA\LRATK.png' id 'ratk'
+mob.dead 'IMG\TERRA\TDEAD.png' id 'dead'
+}
+
+mob.anims
+{idle
+r 'idler'
+l 'idlel'
+}
+
+{atk
+r 'ratk' time '0.3' \\this time means how long it uses that sprite before going back to idle
+l 'latk' time '0.3'
+any 'r, l' \\ any just triggers the animation in the direction the enemy is facing
+}
+
+{dead
+any 'dead' \\"any" means it uses the same sprite for any direction
+}
+
+{mob.ai
+if 'player.visible' = '0' ; rl(0.3) ; \\"rl(0.3) means that it searches for player and when searching it faces right for 0.3 s then left for 0.3 until player is spotted
+if 'player.visible' = '1' mob.follow.player ;
+if 'mob.collide' = '1' delay (0.1) ; mob.attack ;\\delay () means that the mob has a 0.1 delay before attacking
+if 'mob.attack' = '1' atk.any ; interval (0.3) id '504' ;
+while interval.504 if 'mob.collide' (player.hp - 2) ;
+if 'mob.hp' (0) ; interval (0) id '505' ;
+while interval.505 (mob.y - 1) repeat ; until mob.collide 'ground' ; if mob.collide 'ground' 'dead.any'
+}
+
+
+"if 'mob.hp' (0) ; interval (0) id '505' ;
+while interval.505 (mob.y - 1) repeat ; until mob.collide 'ground' ; if mob.collide 'ground' 'dead.any'" this means that when the terracottal dies it creates an interval with the id 505, if an intervals time is 0 it goes on forever, so when it dies it will move down forever until it hits ground and when it does it uses dead.any
+
+
+
+
