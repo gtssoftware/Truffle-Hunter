@@ -1,0 +1,1 @@
+this folder is where the main engine core scripts will be written, controlling package reading and movement/UI.
