@@ -1,7 +1,4 @@
-this is the superdork lame-o squad here to help produce the game :
-GTSWare
-CBASS
-Coolkit
+this game is made by GTS, COOLKIT, and CBASS
 
 This game is intended to be the first steam game from GTS that would use a proprietary engine. most of this game is experimental.
 
