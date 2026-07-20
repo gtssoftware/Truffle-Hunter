@@ -1,0 +1,2 @@
+local hp
+local truffles
