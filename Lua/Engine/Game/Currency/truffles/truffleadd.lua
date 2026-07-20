@@ -1,1 +1,1 @@
--- add code into here and rename it to what the code does
+-- ill make this lua file instead broadcast a message of some sort and when player.lua gets that message it changes truffle by 1
