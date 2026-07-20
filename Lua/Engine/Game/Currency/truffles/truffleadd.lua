@@ -1,4 +1,5 @@
-require ("Lua/Engine/Core/truffvar.lua") --and also renamed and reserved vars.lua for only truffles to avoid fatal naming collision.
+-- removed the lua extension 
+require ("Lua/Engine/Core/truffvar") --and also renamed and reserved vars.lua for only truffles to avoid fatal naming collision.
 truffle = truffle + 1
 
 print("trufflegained")
