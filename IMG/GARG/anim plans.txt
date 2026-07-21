@@ -1,1 +1,0 @@
-so the plan for gargantuas animations are that he uses GARG, when attacking, a 0.6 second animation, he uses GARG1 for 0.3 and then GARG2 for 0.3, when walking it uses GARG for 1.0 seconds, and then for another 1 he uses GARGW, when dead it uses GARGD
