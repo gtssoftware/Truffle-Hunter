@@ -1,3 +1,0 @@
-this is where the core runs. this is stuff like maps and saves
-each level is a lua script that creates the hitboxes, places enemies, sets player spawn point, and determines which sprites are used to build the level terrain. 
-  so we need multiple scripts to read the level scripts and convert them into level data
