@@ -1,0 +1,1 @@
+so the plan for the imps animation is that it starts at imp1, imp2, then 3, then back to 2 and back to imp1 as a loop and when an imp dies it uses impd.

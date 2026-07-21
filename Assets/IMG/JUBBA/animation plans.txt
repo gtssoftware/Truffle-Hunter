@@ -1,0 +1,1 @@
+my plan for these animations is that for walking it plays the looping 8 frames at 15 fps. and for kicking it starts with k1 and then k2, going back to walking/F1W.png as the idle frame.
